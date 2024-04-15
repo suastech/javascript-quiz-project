@@ -79,6 +79,7 @@ describe("Question", () => {
     });
 
     it("should shuffle the items in the 'choices' array", () => {
+      
       // Array with the question choices to be used in the test and passed to the Quiz constructor
       const testChoices = ["choice1", "choice2", "choice3", "choice4", "choice5", "choice6", "choice7"];
       
@@ -86,6 +87,11 @@ describe("Question", () => {
       const question = new Question("test", testChoices, "test");
       // Call the shuffleChoices() method on the Question object
       question.shuffleChoices();
+      
+
+      console.log("........");
+      console.log(question.choices);
+      console.log("........");
       
       // Check that the 'choices' property of the Question object is not equal to the test choices array (i.e. it has been changed/shuffled)
       expect(question.choices).not.toEqual(["choice1", "choice2", "choice3", "choice4", "choice5", "choice6", "choice7"]);
