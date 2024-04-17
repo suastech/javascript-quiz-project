@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const questionContainer = document.querySelector("#question");
   const choiceContainer = document.querySelector("#choices");
   const nextButton = document.querySelector("#nextButton");
+  const restartButton = document.querySelector("#restartButton");
 
   // End view elements
   const resultContainer = document.querySelector("#result");
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /************  EVENT LISTENERS  ************/
 
   nextButton.addEventListener("click", nextButtonHandler);
-
+  restartButton.addEventListener("click", restartButtonHandler);
 
 
   /************  FUNCTIONS  ************/
@@ -88,13 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
     // Clear the previous question text and question choices
     questionContainer.innerText = "";
     choiceContainer.innerHTML = "";
 
     // Get the current question from the quiz by calling the Quiz class method `getQuestion()`
     const question = quiz.getQuestion();
+
     // Shuffle the choices of the current question by calling the method 'shuffleChoices()' on the question object
     question.shuffleChoices();
 
@@ -182,6 +183,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show the next question by calling the function `showQuestion()`.
   }
 
+  function restartButtonHandler() {
+
+    let endView = document.querySelector("#endView");
+    endView.style.display = "none";
+
+    let quizView = document.querySelector("#quizView");
+    quizView.style.display = "";
+
+    counter = 0;
+    quiz.currentQuestionIndex = 0;
+    quiz.correctAnswers = 0;
+    quiz.shuffleQuestions();
+    showQuestion();
+  }
 
 
 
